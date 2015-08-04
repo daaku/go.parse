@@ -273,7 +273,7 @@ func (c *Client) Do(req *http.Request, body, result interface{}) (*http.Response
 	}
 
 	res, err := c.RoundTrip(req)
-	if res.Body != nil {
+	if res != nil && res.Body != nil {
 		defer res.Body.Close()
 	}
 	if err != nil {
