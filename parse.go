@@ -239,6 +239,9 @@ func (c *Client) RoundTrip(req *http.Request) (*http.Response, error) {
 	}
 
 	res, err := c.transport().RoundTrip(req)
+	if res != nil && res.Body != nil {
+		defer res.Body.Close()
+	}
 	if err != nil {
 		return res, err
 	}
